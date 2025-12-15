@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dark Silent Login</title>
+
+<style>
+/* -------------------- GLOBAL -------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+.hidden { display: none; }
+
+/* -------------------- LOGIN PAGE -------------------- */
+.login-container {
+    width: 92%;
+    max-width: 440px;
+    background: #111;
+    margin: 20px auto;
+    padding: 20px 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(180,0,255,0.3);
+    text-align: center;
+}
+
+.login-img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #d4b2ff;
+    text-shadow: 0 0 8px #a056ff;
+}
+
+.subtitle {
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+.input-box {
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #a056ff, #ff44dd);
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+    box-shadow: 0 0 12px rgba(190,0,255,0.5);
+    transition: .2s;
+}
+
+.btn:hover {
+    transform: scale(1.03);
+}
+
+/* -------------------- PROFILE PAGE -------------------- */
+
+:root {
+    --bg: #000;
+    --text: #ffffff;
+    --subtext: #c5c5c5;
+    --card: #151515;
+    --button-bg: #ffffff;
+    --button-text: #000;
+}
+
+body.light {
+    --bg: #ffffff;
+    --text: #000000;
+    --subtext: #444444;
+    --card: #eaeaea;
+    --button-bg: #000;
+    --button-text: #fff;
+}
+
+.profile {
+    display: none;
+    background: var(--bg);
+    min-height: 100vh;
+    color: var(--text);
+    padding-bottom: 40px;
+    transition: .3s;
+}
+
+/* FOTO PROFIL */
+.top-img img {
+    width: 140px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 0 15px #a056ff;
+}
+
+h1 { margin: 8px 0 0 0; }
+h2 { margin: 5px 0 20px 0; color: var(--subtext); }
+
+/* Tombol */
+.theme-btn, .btn-pay, .copy-btn, .music-btn {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.theme-btn:hover, .btn-pay:hover, .copy-btn:hover, .music-btn:hover {
+    transform: scale(1.05);
+}
+
+/* PAYMENT BOX */
+.payment-box {
+    margin-top: 20px;
+    display: none;
+    padding: 15px;
+    background: var(--card);
+    border-radius: 12px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 12px rgba(255,255,255,0.1);
+}
+
+.payment-box img {
+    width: 180px;
+    margin-top: 10px;
+    border-radius: 12px;
+}
+
+/* MUSIC SECTION */
+.music-section {
+    margin-top: 25px;
+    padding: 15px;
+    background: var(--card);
+    border-radius: 12px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 12px rgba(255,255,255,0.1);
+}
+
+.music-select {
+    padding: 10px;
+    width: 70%;
+    border-radius: 8px;
+    border: none;
+    background: #222;
+    color: white;
+}
+
+.volume-slider { width: 120px; }
+
+/* Visualizer */
+.visualizer { display: flex; justify-content: center; margin-top: 10px; }
+.bar {
+    width: 6px;
+    height: 8px;
+    background: var(--text);
+    margin: 0 2px;
+    border-radius: 2px;
+    animation: bounce .8s infinite alternate ease-in-out;
+}
+.bar:nth-child(odd) { animation-delay: .3s; }
+
+@keyframes bounce {
+    from { height: 10px; }
+    to { height: 28px; }
+}
+
+/* Progress bar */
+.progress-container {
+    width: 90%;
+    height: 5px;
+    background: #333;
+    border-radius: 5px;
+    margin: 8px auto;
+    cursor: pointer;
+}
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background: var(--text);
+    border-radius: 5px;
+}
+
+.time-display {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--subtext);
+}
+
+</style>
+</head>
+<body>
+
+<!-- -------------------- LOGIN PAGE -------------------- -->
+<div class="login-container" id="loginPage">
+    <img src="https://files.catbox.moe/1e4o5n.jpg" class="login-img">
+
+    <div class="title">DARK SILENT</div>
+    <div class="subtitle">Gateway to System Endpoint API</div>
+
+    <input id="user" type="text" placeholder="Username" class="input-box">
+    <input id="pass" type="password" placeholder="Password" class="input-box">
+
+    <button onclick="login()" class="btn">MASUK</button>
+</div>
+
+<!-- -------------------- PROFILE PAGE -------------------- -->
+<div class="profile" id="profilePage">
+
+    <div class="top-img">
+        <img src="https://files.catbox.moe/pzkx4f.jpg">
+    </div>
+
+    <h1>LIXX</h1>
+    <h2>STATUS OWNER</h2>
+
+    <button class="theme-btn" onclick="toggleTheme()">GANTI TEMA</button>
+    <button class="btn-pay" onclick="showPay()">PAYMENT</button>
+
+    <!-- PAYMENT -->
+    <div id="pay" class="payment-box">
+        <h2>INI PAYMENT LIXX</h2>
+
+        <p>
+            DANA : 082275284962
+            <button class="copy-btn" onclick="copyText('082275284962')">Copy</button>
+        </p>
+
+        <p>
+            GOPAY : 082275284962
+            <button class="copy-btn" onclick="copyText('082275284962')">Copy</button>
+        </p>
+
+        <img src="https://files.catbox.moe/cb8d3m.jpg">
+    </div>
+
+    <!-- MUSIC PLAYER -->
+    <div class="music-section">
+        <h3>Background Music</h3>
+
+        <select id="songSelect" class="music-select">
+            <option value="">-- Select Music --</option>
+            <option value="https://files.catbox.moe/2efbjm.mp3">Rude</option>
+            <option value="https://files.catbox.moe/jrouzi.mp3">Cupid</option>
+            <option value="https://files.catbox.moe/zr0xhu.mp3">Blue Yung Kai</option>
+            <option value="https://files.catbox.moe/onf6hc.mp3">Wildflower</option>
+            <option value="https://files.catbox.moe/19rjlt.mp3">Forever Young</option>
+            <option value="https://files.catbox.moe/m63ewx.mp3">Heat Waves</option>
+        </select>
+
+        <button id="musicBtn" class="music-btn">PLAY</button>
+
+        <div class="volume-control">
+            🔉 <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.01" value="0.5"> 🔊
+        </div>
+
+        <div class="visualizer">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="time-display">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+/* ------------ LOGIN SYSTEM ------------ */
+function login() {
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+
+    if (u === "weblixx" && p === "123") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("profilePage").style.display = "block";
+    } else {
+        alert("Username / Password salah!");
+    }
+}
+
+/* ------------ THEME ------------ */
+function toggleTheme() {
+    document.body.classList.toggle("light");
+}
+
+/* ------------ PAYMENT ------------ */
+function showPay() {
+    document.getElementById("pay").style.display = "block";
+}
+
+/* ------------ COPY TEXT ------------ */
+function copyText(text) {
+    navigator.clipboard.writeText(text);
+    alert("Disalin: " + text);
+}
+
+/* ------------ MUSIC PLAYER ------------ */
+const audio = new Audio();
+const playBtn = document.getElementById("musicBtn");
+const songSelect = document.getElementById("songSelect");
+const volumeSlider = document.getElementById("volumeSlider");
+const progressBar = document.getElementById("progressBar");
+const progressContainer = document.getElementById("progressContainer");
+const currentTimeEl = document.getElementById("currentTime");
+const durationEl = document.getElementById("duration");
+
+let isPlaying = false;
+
+function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s < 10 ? "0" + s : s}`;
+}
+
+playBtn.addEventListener("click", () => {
+    if (!audio.src) return alert("Pilih lagu dulu");
+
+    if (isPlaying) {
+        audio.pause();
+        playBtn.innerText = "PLAY";
+    } else {
+        audio.play();
+        playBtn.innerText = "PAUSE";
+    }
+    isPlaying = !isPlaying;
+});
+
+songSelect.addEventListener("change", () => {
+    const song = songSelect.value;
+    if (!song) return;
+
+    audio.src = song;
+    audio.play();
+    isPlaying = true;
+    playBtn.innerText = "PAUSE";
+});
+
+volumeSlider.addEventListener("input", () => {
+    audio.volume = volumeSlider.value;
+});
+
+audio.addEventListener("timeupdate", () => {
+    progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+    currentTimeEl.innerText = formatTime(audio.currentTime);
+    durationEl.innerText = formatTime(audio.duration);
+});
+
+progressContainer.addEventListener("click", (e) => {
+    const rect = progressContainer.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    audio.currentTime = (clickX / rect.width) * audio.duration;
+});
+
+</script>
+</body>
+</html>
